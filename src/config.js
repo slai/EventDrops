@@ -26,7 +26,7 @@ export default d3 => ({
         radius: 5,
         date: d => new Date(d),
         onClick: () => {},
-        onDoubleClick: () => {},
+        onDblClick: () => {},
         onMouseOver: () => {},
         onMouseOut: () => {},
     },

@@ -10,7 +10,7 @@ export default (config, xScale) => selection => {
             radius: dropRadius,
             date: dropDate,
             onClick,
-            onDoubleClick,
+            onDblClick,
             onMouseOver,
             onMouseOut,
         },
@@ -27,7 +27,7 @@ export default (config, xScale) => selection => {
         .attr('r', dropRadius)
         .attr('fill', dropColor)
         .on('click', onClick)
-        .on('dblclick', onDoubleClick)
+        .on('dblclick', onDblClick)
         .on('mouseover', onMouseOver)
         .on('mouseout', onMouseOut)
         .merge(drops)
