@@ -21,7 +21,6 @@ export default ({ d3 = window.d3, ...customConfiguration }) => {
 
         const {
             zoom: zoomConfig,
-            drop: { onClick, onMouseOut, onMouseOver },
             metaballs,
             label: { width: labelWidth },
             line: { height: lineHeight },
