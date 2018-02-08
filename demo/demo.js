@@ -87,3 +87,7 @@ d3
     .call(chart);
 
 updateCommitsInformation(chart);
+
+window.addEventListener('resize', () => {
+    chart.redrawToNewWidth();
+});

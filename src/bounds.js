@@ -40,5 +40,7 @@ export default (config, xScale) => selection => {
         .text(dateFormat(xScale.domain()[1]));
 
     bounds.selectAll('.bound.start text').text(dateFormat(xScale.domain()[0]));
-    bounds.selectAll('.bound.end text').text(dateFormat(xScale.domain()[1]));
+    bounds.selectAll('.bound.end text')
+        .attr('x', xScale.range()[1] - margin.right)
+        .text(dateFormat(xScale.domain()[1]));
 };

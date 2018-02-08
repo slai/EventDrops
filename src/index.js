@@ -29,6 +29,8 @@ export default ({ d3 = window.d3, ...customConfiguration }) => {
             margin,
         } = config;
 
+        chart._config = config;
+
         const getEvent = () => d3.event; // keep d3.event mutable see https://github.com/d3/d3/issues/2733
 
         // Follow margins conventions (https://bl.ocks.org/mbostock/3019563)
@@ -71,6 +73,19 @@ export default ({ d3 = window.d3, ...customConfiguration }) => {
             .classed('viewport', true)
             .attr('transform', `translate(${margin.left},${margin.top})`)
             .call(draw(config, xScale));
+
+        chart.redrawToNewWidth = () => {
+            const {label: { width: labelWidth }, margin} = chart._config;
+
+            // Follow margins conventions (https://bl.ocks.org/mbostock/3019563)
+            const width = selection.node().clientWidth - margin.left - margin.right;
+
+            chart.scale().range([0, width - labelWidth]);
+
+            svg.attr('width', width);
+
+            return svg.call(draw(chart._config, chart.scale()));
+        };
     };
 
     chart.scale = () => chart._scale;
