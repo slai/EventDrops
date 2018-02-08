@@ -18,6 +18,7 @@ export const getShiftedTransform = (
 export default (d3, svg, config, xScale, draw, getEvent) => {
     const {
         label: { width: labelsWidth, padding: labelsPadding },
+        margin,
         zoom: { onZoomStart, onZoom, onZoomEnd, minimumScale, maximumScale },
     } = config;
 
@@ -34,6 +35,10 @@ export default (d3, svg, config, xScale, draw, getEvent) => {
         );
 
         const newScale = transform.rescaleX(xScale);
+
+        // Follow margins conventions (https://bl.ocks.org/mbostock/3019563)
+        const width = svg.node().clientWidth - margin.left - margin.right;
+        newScale.range([0, width - labelsWidth]);
 
         svg.call(draw(config, newScale));
 
